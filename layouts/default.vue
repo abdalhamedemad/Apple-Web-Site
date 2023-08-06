@@ -5,7 +5,7 @@ const showDropDown = ref(false);
 
 <template>
   <div>
-    <header class="fixed top-0 w-full h-[44px]">
+    <header class="fixed top-0 w-full h-[44px] z-50">
       <nav class="container h-full flex justify-between items-center px-[22px]">
         <ul
           class="w-full flex justify-between items-center text-primaryblack-1"
@@ -52,6 +52,7 @@ const showDropDown = ref(false);
           <li class="hidden-md hidden justify-center items-center">
             <nuxt-link to="/app">Support</nuxt-link>
           </li>
+          <li class="flex sm:flex md:flex lg:hidden flex-grow"></li>
           <li class="flex justify-center items-center">
             <nuxt-link to="/app"
               ><font-awesome-icon :icon="['fas', 'magnifying-glass']"
@@ -61,6 +62,11 @@ const showDropDown = ref(false);
             <nuxt-link to="/app"
               ><font-awesome-icon :icon="['fas', 'bag-shopping']"
             /></nuxt-link>
+          </li>
+          <li
+            class="flex sm:flex md:flex lg:hidden justify-center items-center cursor-pointer"
+          >
+            <font-awesome-icon :icon="['fas', 'bars']" />
           </li>
         </ul>
       </nav>
@@ -78,6 +84,9 @@ const showDropDown = ref(false);
   </div>
 </template>
 <style scoped>
+li:not(:last-child) {
+  padding-right: 16px;
+}
 li,
 li:hover:not(:first-child) a svg {
   transition: all 0.3s ease-in-out;

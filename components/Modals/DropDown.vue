@@ -6,7 +6,7 @@ function hideDropdown() {
 </script>
 
 <template>
-  <div class="drop-down w-screen fixed top-[44px] left-0">
+  <div class="drop-down w-screen fixed top-[44px] left-0 z-50">
     <div class="flex flex-col h-full w-full">
       <div class="w-full bg-primarywhite-200">
         <div

@@ -12,6 +12,8 @@
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@types/node": "^18.17.1",
+    "@vueuse/core": "^10.3.0",
+    "@vueuse/nuxt": "^10.3.0",
     "nuxt": "^3.6.5"
   },
   "dependencies": {
@@ -19,6 +21,8 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/vue-fontawesome": "^3.0.3",
-    "@nuxtjs/fontawesome": "^1.1.2"
+    "@nuxtjs/fontawesome": "^1.1.2",
+    "vue-ssr-carousel": "^2.3.2",
+    "vueperslides": "^3.5.1"
   }
 }

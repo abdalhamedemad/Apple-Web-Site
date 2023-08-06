@@ -1,16 +1,17 @@
 <template>
   <div
-    class="flex w-full align-center justify-center mt-[44px]"
-    :style="[`color:  ${props.titleColor ? props.titleColor : ''}`]"
+    class="flex align-center justify-center flex-col mt-[44px] w-full overflow-hidden"
+    :style="[
+      `color:  ${props.titleColor ? props.titleColor : ''}; height:${
+        props.height
+      }`,
+    ]"
   >
     <div
-      class="page-box w-full flex justify-center items-start text-center"
-      :style="[
-        `background-image: url(${props.imgSrc}); background-size: 100% ${props.height}px; height:${props.height}px`,
-      ]"
+      class="page-box w-full h-full overflow-hidden relative flex justify-center items-start text-center"
     >
       <header
-        class="pt-[47px] flex flex-col items-center justify-start text-center w-full"
+        class="pt-[47px] flex flex-col items-center justify-start text-center w-full z-20"
       >
         <h2 class="text-6xl font-semibold">{{ props.title }}</h2>
         <p class="pt-3px text-3xl font-medium">{{ props.paragraph }}</p>
@@ -24,17 +25,30 @@
         </div>
       </header>
     </div>
-    <div class="image-wrapper">
+    <div
+      v-if="!props.videoSrc"
+      class="image-wrapper w-full h-full overflow-hidden relative"
+    >
       <figure
-        class="image-figure w-[300px]"
+        class="image-figure z-10"
         :style="[
-          `background-image: url(${props.imgSrc}); background-size: 100% ${props.height}px; height:${props.height}`,
+          `background-image: url(${getImageSrc}); background-size: ${props.width} ${props.height}; height:${props.height};
+          width:${props.width};
+          `,
         ]"
       ></figure>
     </div>
+    <di v-else class="video-wrapper w-full h-full overflow-hidden relative">
+      <video class="video-figure z-10" autoplay loop controls>
+        <source :src="props.videoSrc" type="video/mp4" />
+      </video>
+    </di>
   </div>
 </template>
 <script setup>
+import { useWindowSize } from "@vueuse/core";
+
+const { width, height } = useWindowSize();
 // const title = "MacBook Air 15";
 // const paragraph = "Impressively big.Impossibly thin";
 // const imgSrc = "'http://localhost:3000/macair.jpg'";
@@ -43,8 +57,22 @@ const props = defineProps({
   title: String,
   paragraph: String,
   imgSrc: String,
-  height: Number,
+  smallImgSrc: String,
+  height: String,
   titleColor: String,
+  width: String,
+  videoSrc: String,
+});
+
+const { getScreens } = useUtils();
+
+const screenWidth = getScreens();
+const getImageSrc = ref("");
+watchEffect(() => {
+  if (screenWidth.value == "sm" || screenWidth.value == "md")
+    getImageSrc.value = props.smallImgSrc ? props.smallImgSrc : props.imgSrc;
+  else getImageSrc.value = props.imgSrc;
+  console.log(screenWidth.value, getImageSrc.value);
 });
 </script>
 <style scoped>
@@ -53,17 +81,23 @@ const props = defineProps({
   background-repeat: no-repeat;
 }
 .image-wrapper {
-  z-index: 1;
+  /* z-index: 1; */
   overflow: visible;
   flex-grow: 1;
 }
+
+.video-figure,
 .image-figure {
-  z-index: 1;
+  /* z-index: 1; */
   position: absolute;
-  left: 50%;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  left: calc(50% + 0px);
   right: auto;
-  bottom: 0;
+  bottom: 0px;
   top: auto;
-  transform: translateX(-50%);
+  -webkit-transform: translatex(-50%);
+  transform: translatex(-50%);
 }
 </style>
