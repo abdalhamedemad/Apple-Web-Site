@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex align-center justify-center flex-col mt-[44px] w-full overflow-hidden"
+    class="flex align-center justify-center flex-col mt-[22px] w-full overflow-hidden"
     :style="[
       `color:  ${props.titleColor ? props.titleColor : ''}; height:${
         props.height
@@ -38,11 +38,11 @@
         ]"
       ></figure>
     </div>
-    <di v-else class="video-wrapper w-full h-full overflow-hidden relative">
-      <video class="video-figure z-10" autoplay loop controls>
+    <div v-else class="video-wrapper w-full h-full relative">
+      <video :class="`video-figure z-10 h-[500px]`" loop autoplay muted>
         <source :src="props.videoSrc" type="video/mp4" />
       </video>
-    </di>
+    </div>
   </div>
 </template>
 <script setup>
@@ -72,7 +72,7 @@ watchEffect(() => {
   if (screenWidth.value == "sm" || screenWidth.value == "md")
     getImageSrc.value = props.smallImgSrc ? props.smallImgSrc : props.imgSrc;
   else getImageSrc.value = props.imgSrc;
-  console.log(screenWidth.value, getImageSrc.value);
+  // console.log(screenWidth.value, getImageSrc.value);
 });
 </script>
 <style scoped>
@@ -80,6 +80,7 @@ watchEffect(() => {
   /* background-image: url("http://localhost:3000/macair.jpg"); */
   background-repeat: no-repeat;
 }
+.vide-wrapper,
 .image-wrapper {
   /* z-index: 1; */
   overflow: visible;

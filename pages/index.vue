@@ -7,10 +7,32 @@ const slides = [
   {
     title: "Slide #1",
     content: "Slide 1 content.",
+    color: "#41b883",
+    bgSrc: "http://localhost:3000/s1.jpg",
   },
   {
     title: "Slide #2",
     content: "Slide 2 content.",
+    color: "#35495e",
+    bgSrc: "http://localhost:3000/s2.jpg",
+  },
+  {
+    title: "Slide #2",
+    content: "Slide 2 content.",
+    color: "#35495e",
+    bgSrc: "http://localhost:3000/s3.jpg",
+  },
+  {
+    title: "Slide #2",
+    content: "Slide 2 content.",
+    color: "#35495e",
+    bgSrc: "http://localhost:3000/s4.jpg",
+  },
+  {
+    title: "Slide #2",
+    content: "Slide 2 content.",
+    color: "#35495e",
+    bgSrc: "http://localhost:3000/s5.jpg",
   },
 ];
 </script>
@@ -52,49 +74,58 @@ const slides = [
       :videoSrc="'http://localhost:3000/large.mp4'"
     ></HomePageHeaderLandingPage>
 
-    <div class="grid grid-cols-2 gap-[12px]">
+    <div class="grid grid-cols-2 gap-[12px] mb-4 mt-4">
       <HomePageHeaderLandingPage
         :title="'iPhone 14'"
         :paragraph="'Pro.Beyond.'"
         :imgSrc="'http://localhost:3000/iphone14.jpg'"
-        :height="'624px'"
+        :height="'580px'"
         :titleColor="'#ffffff'"
-        :width="'3008px'"
+        :width="'1262px'"
       ></HomePageHeaderLandingPage>
 
       <HomePageHeaderLandingPage
         :title="'iPhone 14'"
         :paragraph="'Wonderfull'"
         :imgSrc="'http://localhost:3000/iphone142.jpg'"
-        :height="'624px'"
-        :width="'3008px'"
+        :height="'580px'"
+        :width="'1262px'"
       ></HomePageHeaderLandingPage>
       <HomePageHeaderLandingPage
         :title="'Trade In'"
         :paragraph="`Upgrade and save.it's that easy`"
         :imgSrc="'http://localhost:3000/4.jpg'"
-        :height="'624px'"
-        :width="'3008px'"
+        :height="'580px'"
+        :width="'1262px'"
       ></HomePageHeaderLandingPage>
       <HomePageHeaderLandingPage
         :title="'WATCH'"
         :paragraph="'A healthy leap ahead'"
         :imgSrc="'http://localhost:3000/6.jpg'"
-        :height="'624px'"
-        :width="'3008px'"
+        :height="'580px'"
+        :width="'1262px'"
         :titleColor="'#ffffff'"
       ></HomePageHeaderLandingPage>
     </div>
-    <div>
-      <vueper-slides>
+    <div class="mt-[22px] mb-[22px]">
+      <vueper-slides
+        class="w-full h-full"
+        :visible-slides="1"
+        :slide-ratio="2 / 4"
+        :arrows-outside="false"
+      >
         <vueper-slide
           v-for="(slide, i) in slides"
           :key="i"
-          :title="slide.title"
-          :content="slide.content"
+          :title="''"
+          :content="''"
+          :style="`background-image: url(${slide.bgSrc}); background-size: 100% 100%; background-position: center;`"
         >
         </vueper-slide>
       </vueper-slides>
+    </div>
+    <div>
+      <LayoutsFooter></LayoutsFooter>
     </div>
   </div>
 </template>

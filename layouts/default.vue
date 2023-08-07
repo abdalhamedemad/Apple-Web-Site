@@ -71,7 +71,7 @@ const showDropDown = ref(false);
         </ul>
       </nav>
     </header>
-    <div class="mb-[0px]"></div>
+    <div class="mb-[22px]"></div>
     <div>
       <slot />
     </div>
