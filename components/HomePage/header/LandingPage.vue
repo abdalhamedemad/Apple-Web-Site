@@ -13,9 +13,11 @@
       <header
         class="pt-[47px] flex flex-col items-center justify-start text-center w-full z-20"
       >
-        <h2 class="text-6xl font-semibold">{{ props.title }}</h2>
-        <p class="pt-3px text-3xl font-medium">{{ props.paragraph }}</p>
-        <div class="text-2xl font-medium text-[#06c] mt-[10px]">
+        <h2 class="text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-semibold">
+          {{ props.title }}
+        </h2>
+        <p class="pt-3px text-xl font-medium">{{ props.paragraph }}</p>
+        <div class="text-l font-medium text-[#06c] mt-[10px]">
           <nuxt-link class="hover:underline cursor-pointer" to=""
             >Learn more ></nuxt-link
           >
@@ -26,14 +28,14 @@
       </header>
     </div>
     <div
-      v-if="!props.videoSrc"
+      v-if="!props.videoSrc || 1"
       class="image-wrapper w-full h-full overflow-hidden relative"
     >
       <figure
         class="image-figure z-10"
         :style="[
-          `background-image: url(${getImageSrc}); background-size: ${props.width} ${props.height}; height:${props.height};
-          width:${props.width};
+          `background-image: url(${getImageSrc}); background-size: ${imgWidth} ${props.height}; height:${props.height};
+          width:${imgWidth};
           `,
         ]"
       ></figure>
@@ -68,11 +70,23 @@ const { getScreens } = useUtils();
 
 const screenWidth = getScreens();
 const getImageSrc = ref("");
+const imgWidth = ref(props.width);
+
 watchEffect(() => {
-  if (screenWidth.value == "sm" || screenWidth.value == "md")
+  if (
+    screenWidth.value == "xs" ||
+    screenWidth.value == "sm" ||
+    screenWidth.value == "md"
+  ) {
     getImageSrc.value = props.smallImgSrc ? props.smallImgSrc : props.imgSrc;
-  else getImageSrc.value = props.imgSrc;
-  // console.log(screenWidth.value, getImageSrc.value);
+    if (props.grid != "1")
+      imgWidth.value =
+        (Number(imgWidth.value.slice(0, -2)) * 0.7).toString() + "px";
+  } else {
+    getImageSrc.value = props.imgSrc;
+    imgWidth.value = props.width;
+  }
+  console.log(imgWidth.value, getImageSrc.value);
 });
 </script>
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
   <div class="footer w-full h-full pt-[17px] pb-[17px]">
-    <div class="container">
+    <div class="container px-4">
       <ul>
         <li>
           1. Qualified Purchasers receive an Apple Gift Card when they purchase
@@ -47,7 +47,7 @@
       </ul>
     </div>
     <div
-      class="footer-links flex justify-between container pt-[20px] text-[12px]"
+      class="footer-links flex justify-between container px-4 pt-[20px] text-[12px]"
     >
       <div class="first-column">
         <ul>

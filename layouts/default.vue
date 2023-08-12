@@ -71,7 +71,7 @@ const showDropDown = ref(false);
         </ul>
       </nav>
     </header>
-    <div class="mb-[22px]"></div>
+    <div class="mb-[44px]"></div>
     <div>
       <slot />
     </div>
@@ -84,6 +84,9 @@ const showDropDown = ref(false);
   </div>
 </template>
 <style scoped>
+header {
+  background: rgba(251, 251, 253, 0.8);
+}
 li:not(:last-child) {
   padding-right: 16px;
 }
